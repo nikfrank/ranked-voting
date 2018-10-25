@@ -49,24 +49,6 @@ class Ranker extends Component {
           loser = candidates[i];
 
 
-      // record the transfers
-      // for this loser, any vote that was his
-      // has a new voteFor
-      votes.forEach(vote=> {
-        let v = 0;
-        while( eliminated.indexOf(vote[v]) > -1 ) v++;
-        const voteFor = vote[v];
-
-        if( voteFor === loser ){
-          let nv = 0;
-          const ne = eliminated.concat( loser );
-          while( ne.indexOf(vote[nv]) > -1 ) nv++;
-
-          const nf = vote[nv];
-          roundTransfers[nf] = (roundTransfers[nf]||0) + 1
-        }
-      });
-      
       // eliminate the loser
       eliminated.push(loser);
       candidates = candidates.filter( id => id !== loser );
@@ -74,11 +56,6 @@ class Ranker extends Component {
       
       // record the result
       rounds.push(round);
-
-      if( candidates.length > 1 )
-        roundsTransfers.push(roundTransfers);
-      else
-        roundsTransfers.push({});
     }
 
     this.setState({
@@ -130,16 +107,18 @@ class Ranker extends Component {
                   </div>
                 ) )}
              </div>,
-             <div className='round-transfers' key={'rt'+ri}>
-               {candidates.map(({ id })=>(
-                  <div className={'transfer '+(
-                      roundsTransfers[ri][id] ? 'has':'not'
-                    )}
-                       key={'rt'+ri+' '+id}>
-                    +{roundsTransfers[ri][id] || 0}
-                  </div>
-                ))}
-             </div>
+             rounds[ri+1] && (
+               <div className='round-transfers' key={'rt'+ri}>
+                 {candidates.map(({ id })=>(
+                    <div className={'transfer '+(
+                        rounds[ri+1][id] - round[id] ? 'has':'not'
+                      )}
+                         key={'rt'+ri+' '+id}>
+                      +{rounds[ri+1][id] - round[id]}
+                    </div>
+                  ))}
+               </div>
+             )
            ] )}
         </div>
       </div>
