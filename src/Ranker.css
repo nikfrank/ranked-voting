@@ -1,0 +1,54 @@
+.ranker .candidates {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.ranker .candidate {
+  min-width: 50px;
+}
+
+.ranker .avatar-container {
+  height: 200px;
+  width: 200px;
+}
+
+.ranker .candidates img {
+  max-height: 200px;
+  max-width: 200px;
+}
+
+.ranker .round {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  
+  width: 100%;
+  margin: 15px 0;
+  min-height: 20px;
+}
+
+.ranker .round > .loser {
+  background-color: red;
+}
+
+.ranker .round > .winner {
+  color: gold;
+}
+
+
+.ranker .round-transfers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  width: 100%;
+}
+
+.ranker .round-transfers > .transfer.has {
+  background-color: green;
+}
+
+.ranker .round-transfers > .transfer.not {
+  color: rgba(0,0,0,0);
+}

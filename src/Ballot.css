@@ -1,0 +1,10 @@
+.ballot {
+  background-color: white;
+  color: black;
+}
+
+.ballot .candidate {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
