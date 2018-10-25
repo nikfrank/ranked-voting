@@ -9,13 +9,13 @@
 }
 
 .ranker .avatar-container {
-  height: 200px;
-  width: 200px;
+  height: 15vw;
+  width: 15vw;
 }
 
 .ranker .candidates img {
-  max-height: 200px;
-  max-width: 200px;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .ranker .round {
